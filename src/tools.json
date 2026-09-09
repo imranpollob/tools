@@ -1,16 +1,5 @@
 [
   {
-    "repo": "solidity-ast-generator",
-    "title": "Solidity AST Generator",
-    "subtitle": "Generate and explore Solidity abstract syntax trees with interactive highlighting and visual tree navigation.",
-    "category": "Development",
-    "type": "online",
-    "url": "https://ast.imranpollob.com/",
-    "action": "Use online",
-    "image": "solidity-ast-generator.jpeg",
-    "tags": []
-  },
-  {
     "repo": "note-cli",
     "title": "Note CLI",
     "subtitle": "A lightweight command-line note manager for creating, searching, editing, and organizing notes directly from your terminal.",
@@ -115,7 +104,7 @@
     "subtitle": "Search cryptocurrencies and view Coinbase trading pairs with interactive TradingView price charts.",
     "category": "Finance",
     "type": "online",
-    "url": "https://imranpollob.github.io/coins",
+    "url": "https://github.com/imranpollob/crypto-chart-viewer",
     "action": "Use online",
     "image": "crypto-chart-viewer.png",
     "tags": []
