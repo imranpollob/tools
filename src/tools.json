@@ -1,16 +1,5 @@
 [
   {
-    "repo": "solidity-ast-generator",
-    "title": "Solidity AST Generator",
-    "subtitle": "Generate and explore Solidity abstract syntax trees with interactive highlighting and visual tree navigation.",
-    "category": "Development",
-    "type": "online",
-    "url": "https://ast.imranpollob.com/",
-    "action": "Use online",
-    "image": "solidity-ast-generator.jpeg",
-    "tags": []
-  },
-  {
     "repo": "note-cli",
     "title": "Note CLI",
     "subtitle": "A lightweight command-line note manager for creating, searching, editing, and organizing notes directly from your terminal.",
@@ -104,7 +93,7 @@
     "subtitle": "Convert BibTeX references into properly formatted LaTeX \\bibitem entries instantly online.",
     "category": "Writing",
     "type": "online",
-    "url": "https://imranpollob.github.io/BibTeX-to-Bibitem/",
+    "url": "https://imranpollob.github.io/bibtex-to-bibitem/",
     "action": "Use online",
     "image": "bibtex-to-bibitem.png",
     "tags": []
@@ -115,7 +104,7 @@
     "subtitle": "Search cryptocurrencies and view Coinbase trading pairs with interactive TradingView price charts.",
     "category": "Finance",
     "type": "online",
-    "url": "https://imranpollob.github.io/coins",
+    "url": "https://imranpollob.github.io/crypto-chart-viewer",
     "action": "Use online",
     "image": "crypto-chart-viewer.png",
     "tags": []
@@ -203,7 +192,7 @@
     "subtitle": "Compare two texts side by side and highlight word-level or character-level differences privately in your browser.",
     "category": "Writing",
     "type": "online",
-    "url": "https://imranpollob.github.io/diffchecker/",
+    "url": "https://imranpollob.github.io/text-diff-checker/",
     "action": "Use online",
     "image": "text-diff-checker.png",
     "tags": [
