@@ -1,0 +1,36 @@
+import { chromium } from '@playwright/test';
+import assert from 'node:assert/strict';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+const errors = [];
+page.on('pageerror', error => errors.push(error.message));
+await page.goto(process.env.TEST_URL || 'http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.screenshot({ path: '/tmp/pollob-tools-desktop.png', fullPage: false });
+assert.equal(await page.locator('.tool-card').count(), 19);
+await page.keyboard.press('/');
+assert.equal(await page.locator('#search').evaluate(el => el === document.activeElement), true);
+await page.locator('#search').fill('COLOR shades');
+assert.equal(await page.locator('.tool-card').count(), 1);
+assert.equal(await page.locator('.tool-card h2').innerText(), 'Color Shade Generator');
+await page.keyboard.press('Escape');
+assert.equal(await page.locator('.tool-card').count(), 19);
+await page.locator('[data-filter="install"]').click();
+assert.equal(await page.locator('.tool-action.online').count(), 0);
+assert.ok(await page.locator('.tool-card').count() > 0);
+await page.locator('#search').fill('nonexistent-tool');
+assert.equal(await page.locator('.tool-card').count(), 0);
+assert.equal(await page.locator('#empty-state').isVisible(), true);
+await page.locator('#reset-search').click();
+assert.equal(await page.locator('.tool-card').count(), 19);
+for (const width of [375, 768, 1440, 1920]) {
+  await page.setViewportSize({ width, height: 900 });
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `Overflow at ${width}`);
+}
+await page.setViewportSize({ width: 375, height: 900 });
+await page.screenshot({ path: '/tmp/pollob-tools-mobile.png', fullPage: false });
+await page.locator('footer').scrollIntoViewIfNeeded();
+await page.evaluate(async () => { await Promise.all([...document.images].map(image => image.decode())); });
+assert.equal(await page.locator('img').evaluateAll(images => images.every(image => image.naturalWidth > 0)), true);
+assert.deepEqual(errors, []);
+console.log('Browser checks passed: gallery, live search, keyboard, filters, empty state, images, and four responsive widths.');
+await browser.close();
