@@ -16,7 +16,7 @@
     "subtitle": "Generate customizable Lorem Ipsum text with control over paragraphs, sentences, and word length.",
     "category": "Writing",
     "type": "online",
-    "url": "https://lorem777.netlify.app/",
+    "url": "https://imranpollob.github.io/lorem-ipsum-generator/",
     "action": "Use online",
     "image": "lorem-ipsum-generator.png",
     "tags": []
@@ -27,7 +27,7 @@
     "subtitle": "Play customizable trivia quizzes by category and difficulty with instant scoring and results.",
     "category": "Learning",
     "type": "online",
-    "url": "https://quizx.netlify.app/",
+    "url": "https://imranpollob.github.io/online-trivia-quiz/",
     "action": "Use online",
     "image": "online-trivia-quiz.png",
     "tags": []
@@ -38,7 +38,7 @@
     "subtitle": "Practice arithmetic with customizable operations, difficulty levels, timers, and interactive mental math exercises.",
     "category": "Learning",
     "type": "online",
-    "url": "https://mentalmath7.netlify.app/",
+    "url": "https://imranpollob.github.io/mental-math-trainer/",
     "action": "Use online",
     "image": "mental-math-trainer.jpeg",
     "tags": []
@@ -49,7 +49,7 @@
     "subtitle": "Analyze GitHub profiles, repositories, languages, stars, forks, and activity through a visual dashboard.",
     "category": "Development",
     "type": "online",
-    "url": "https://gitlens7.netlify.app/",
+    "url": "https://imranpollob.github.io/github-profile-analyzer/",
     "action": "Use online",
     "image": "github-profile-analyzer.png",
     "tags": []
@@ -71,7 +71,7 @@
     "subtitle": "Generate lighter and darker shades from any color and quickly copy HEX values for design and development.",
     "category": "Design",
     "type": "online",
-    "url": "https://color-shade-generator7.netlify.app/",
+    "url": "https://imranpollob.github.io/color-shade-generator/",
     "action": "Use online",
     "image": "color-shade-generator.jpeg",
     "tags": []
@@ -82,7 +82,7 @@
     "subtitle": "Practice spelling with interactive quizzes, audio pronunciation, difficulty levels, and hundreds of commonly misspelled words.",
     "category": "Learning",
     "type": "online",
-    "url": "https://spelling-test.netlify.app/",
+    "url": "https://imranpollob.github.io/online-spelling-quiz/",
     "action": "Use online",
     "image": "online-spelling-quiz.png",
     "tags": []
@@ -159,7 +159,7 @@
     "subtitle": "Open a distraction-free fullscreen black screen with a clock, custom text, and customizable background colors.",
     "category": "Productivity",
     "type": "online",
-    "url": "https://blackx.netlify.app/",
+    "url": "https://imranpollob.github.io/black-screen-online/",
     "action": "Use online",
     "image": "black-screen-online.png",
     "tags": []

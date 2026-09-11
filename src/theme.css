@@ -23,7 +23,7 @@
   --color-error: #dc2626;
   --color-info: #0284c7;
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, 'JetBrains Mono', monospace;
   --base-font-size: 16px;
   --font-size-nav: 0.875rem;
@@ -53,6 +53,7 @@
   --spacing-unit: 4px;
   color-scheme: light;
 }
+
 [data-theme='dark'] {
   --color-primary: #14b8a6;
   --color-primary-hover: #2dd4bf;

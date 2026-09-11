@@ -35,7 +35,7 @@ Search matches all entered words across title, description, category, repository
 
 ## Brand theme
 
-The provided brand tokens live in `src/theme.css`. The UI uses Plus Jakarta Sans for body text and controls, Playfair Display for headings, and the supplied logo in the header, footer, and favicon. Preview surrounds use the brand palette; project screenshots retain their original appearance.
+The provided brand tokens live in `src/theme.css`. The UI uses Plus Jakarta Sans for body text and controls, Outfit for headings, and the supplied logo in the header, footer, and favicon. Preview surrounds use the brand palette; project screenshots retain their original appearance.
 
 Light and dark themes follow the system preference until a visitor chooses a theme with the header button. The selection is saved locally, with a safe fallback when browser storage is unavailable.
 
