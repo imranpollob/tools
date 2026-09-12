@@ -1,34 +1,73 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ecfdfb" />
-    <meta name="description" content="Explore online tools and downloadable apps by Imran Pollob for writing, development, learning, and productivity." />
-    <link rel="icon" href="./logo.png" type="image/png" />
-    <script>
-      // Apply the theme before paint; storage may be blocked by the browser.
-      (() => {
-        let saved;
-        try { saved = localStorage.getItem('pollob-tools-theme'); } catch {}
-        const theme = saved === 'light' || saved === 'dark' ? saved :
-          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#071311' : '#ecfdfb';
-      })();
-    </script>
-    <title>Tools by Imran Pollob</title>
-  </head>
-  <body>
-    <a class="skip-link" href="#tools">Skip to tools</a>
-    <header class="site-header"><a class="brand" href="./" aria-label="Tools by Imran Pollob home"><img class="brand-logo" src="./logo.png" alt="" width="52" height="52"><span class="brand-name">Tools <span class="brand-light">by Imran Pollob</span></span></a><div class="header-actions"><a class="author-link" href="https://github.com/imranpollob" target="_blank" rel="noopener noreferrer"><span>Made by Imran Pollob</span><span data-icon="github"></span><span aria-hidden="true">↗</span></a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span></button></div></header>
-    <main>
-      <section class="intro" aria-labelledby="page-title"><h1 id="page-title">Explore online tools and downloadable apps <span>by Imran Pollob.</span></h1>
-      <div class="search-wrap"><span data-icon="search"></span><label class="sr-only" for="search">Search tools</label><input id="search" type="search" placeholder="Find your next favorite tool…" autocomplete="off" spellcheck="false"><kbd aria-hidden="true">/</kbd></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ecfdfb" />
+  <meta name="description"
+    content="Explore online tools and downloadable apps by Imran Pollob for writing, development, learning, and productivity." />
+  <link rel="icon" href="./logo.png" type="image/png" />
+  <script>
+    // Apply the theme before paint; storage may be blocked by the browser.
+    (() => {
+      let saved;
+      try { saved = localStorage.getItem('pollob-tools-theme'); } catch { }
+      const theme = saved === 'light' || saved === 'dark' ? saved :
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#071311' : '#ecfdfb';
+    })();
+  </script>
+  <title>Tools by Imran Pollob</title>
+</head>
+
+<body>
+  <a class="skip-link" href="#tools">Skip to tools</a>
+  <header class="site-header"><a class="brand" href="./" aria-label="Tools by Imran Pollob home"><img class="brand-logo"
+        src="./logo.png" alt="" width="52" height="52"><span class="brand-name">Tools <span class="brand-light">by Imran
+          Pollob</span></span></a>
+    <div class="header-actions"><a class="author-link" href="https://github.com/imranpollob" target="_blank"
+        rel="noopener noreferrer"><span>Made by Imran Pollob</span><span data-icon="github"></span><span
+          aria-hidden="true">↗</span></a><button class="theme-toggle" id="theme-toggle" type="button"
+        aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span></button></div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Explore online tools and downloadable apps <span>by Imran Pollob.</span></h1>
+      <div class="search-wrap"><span data-icon="search"></span><label class="sr-only" for="search">Search
+          tools</label><input id="search" type="search" placeholder="Find your next favorite tool…" autocomplete="off"
+          spellcheck="false"><kbd aria-hidden="true">/</kbd></div>
+    </section>
+    <section id="tools" class="collection" aria-label="Tool collection">
+      <section class="tool-category" id="category-web" aria-labelledby="heading-web">
+        <div class="category-header">
+          <h2 id="heading-web" class="category-title"><span data-icon="globe"></span>Web Tools <span
+              class="category-count" id="web-count"></span></h2>
+        </div>
+        <div id="web-grid" class="tool-grid"></div>
       </section>
-      <section id="tools" class="collection" aria-label="Tool collection"><div class="collection-toolbar"><div class="filters" role="group" aria-label="Filter tools by availability"><button type="button" data-filter="all" aria-pressed="true">All tools <span id="all-count"></span></button><button type="button" data-filter="online" aria-pressed="false"><span data-icon="globe"></span>Use online</button><button type="button" data-filter="install" aria-pressed="false"><span data-icon="download"></span>Install locally</button></div><span id="result-count" role="status" aria-live="polite" aria-atomic="true"></span></div><div id="tool-grid" class="tool-grid"></div><div id="empty-state" hidden><span data-icon="search"></span><h2>No tools found</h2><p>Try another keyword, or explore the whole collection.</p><button id="reset-search" type="button">Clear filters</button></div></section>
-    </main>
-    <footer><a class="brand footer-brand" href="./"><img class="brand-logo" src="./logo.png" alt="" width="40" height="40"><span class="brand-name">Tools <span class="brand-light">by Imran Pollob</span></span></a><p>Built with curiosity. Shared with everyone.</p><a href="https://github.com/stars/imranpollob/lists" target="_blank" rel="noopener noreferrer">Explore on GitHub <span aria-hidden="true">↗</span></a></footer>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+      <section class="tool-category" id="category-install" aria-labelledby="heading-install">
+        <div class="category-header">
+          <h2 id="heading-install" class="category-title"><span data-icon="download"></span>Installables <span
+              class="category-count" id="install-count"></span></h2>
+        </div>
+        <div id="install-grid" class="tool-grid"></div>
+      </section>
+      <div id="empty-state" hidden>
+        <span data-icon="search"></span>
+        <h2>No tools found</h2>
+        <p>Try another keyword, or explore the whole collection.</p>
+        <button id="reset-search" type="button">Clear search</button>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="./"><img class="brand-logo" src="./logo.png" alt="" width="40"
+        height="40"><span class="brand-name">Tools <span class="brand-light">by Imran Pollob</span></span></a>
+    <p>Built with curiosity. Shared with everyone.</p><a href="https://github.com/stars/imranpollob/lists"
+      target="_blank" rel="noopener noreferrer">Explore on GitHub <span aria-hidden="true">↗</span></a>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>

@@ -16,7 +16,7 @@ document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.
 const themeToggle = document.querySelector('#theme-toggle');
 const systemTheme = matchMedia('(prefers-color-scheme: dark)');
 let themePreference;
-try { themePreference = localStorage.getItem('pollob-tools-theme'); } catch {}
+try { themePreference = localStorage.getItem('pollob-tools-theme'); } catch { }
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   const label = `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`;
@@ -28,38 +28,59 @@ function applyTheme(theme) {
 applyTheme(document.documentElement.dataset.theme);
 themeToggle.addEventListener('click', () => {
   themePreference = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('pollob-tools-theme', themePreference); } catch {}
+  try { localStorage.setItem('pollob-tools-theme', themePreference); } catch { }
   applyTheme(themePreference);
 });
 systemTheme.addEventListener('change', event => {
   if (!['light', 'dark'].includes(themePreference)) applyTheme(event.matches ? 'dark' : 'light');
 });
-const grid = document.querySelector('#tool-grid');
 const search = document.querySelector('#search');
-let activeFilter = 'all';
-document.querySelector('#all-count').textContent = tools.length;
+const webGrid = document.querySelector('#web-grid');
+const installGrid = document.querySelector('#install-grid');
+const categoryWeb = document.querySelector('#category-web');
+const categoryInstall = document.querySelector('#category-install');
+const webCount = document.querySelector('#web-count');
+const installCount = document.querySelector('#install-count');
+const emptyState = document.querySelector('#empty-state');
+
 const escape = text => text.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+const renderCard = (tool, index) => `<article class="tool-card">
+  <a class="preview-link" href="${tool.url}" target="_blank" rel="noopener noreferrer" aria-label="${escape(tool.action)}: ${escape(tool.title)}">
+    <img src="${import.meta.env.BASE_URL}previews/${tool.image}" alt="${escape(tool.title)} preview" ${index < 8 ? 'fetchpriority="high"' : 'loading="lazy"'} width="800" height="500">
+    <span class="preview-arrow">${icon('arrow')}</span>
+  </a>
+  <div class="card-content">
+    <h2><a href="${tool.url}" target="_blank" rel="noopener noreferrer">${escape(tool.title)}</a></h2>
+    <p>${escape(tool.subtitle)}</p>
+    <div class="card-bottom">
+      <a class="tool-action ${tool.type}" href="${tool.url}" target="_blank" rel="noopener noreferrer">${icon(tool.type === 'online' ? 'globe' : 'download')}${escape(tool.action)}<span aria-hidden="true">↗</span></a>
+      <a class="source-link" href="https://github.com/imranpollob/${tool.repo}" target="_blank" rel="noopener noreferrer" aria-label="Source code for ${escape(tool.title)}">${icon('github')}</a>
+    </div>
+  </div>
+</article>`;
+
 function render() {
-  const results = filterTools(tools, search.value, activeFilter);
-  document.querySelector('#result-count').textContent = `${results.length} ${results.length === 1 ? 'tool' : 'tools'} to explore`;
-  document.querySelector('#empty-state').hidden = results.length !== 0;
-  grid.innerHTML = results.map((tool, index) => `<article class="tool-card">
-    <a class="preview-link" href="${tool.url}" target="_blank" rel="noopener noreferrer" aria-label="${escape(tool.action)}: ${escape(tool.title)}">
-      <img src="${import.meta.env.BASE_URL}previews/${tool.image}" alt="${escape(tool.title)} preview" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'} width="800" height="500">
-      <span class="preview-arrow">${icon('arrow')}</span>
-    </a>
-    <div class="card-content"><h2><a href="${tool.url}" target="_blank" rel="noopener noreferrer">${escape(tool.title)}</a></h2><p>${escape(tool.subtitle)}</p><div class="card-bottom"><a class="tool-action ${tool.type}" href="${tool.url}" target="_blank" rel="noopener noreferrer">${icon(tool.type === 'online' ? 'globe' : 'download')}${escape(tool.action)}<span aria-hidden="true">↗</span></a><a class="source-link" href="https://github.com/imranpollob/${tool.repo}" target="_blank" rel="noopener noreferrer" aria-label="Source code for ${escape(tool.title)}">${icon('github')}</a></div></div>
-  </article>`).join('');
+  const query = search.value;
+  const webResults = filterTools(tools, query, 'online');
+  const installResults = filterTools(tools, query, 'install');
+  const totalCount = webResults.length + installResults.length;
+
+  categoryWeb.hidden = webResults.length === 0;
+  categoryInstall.hidden = installResults.length === 0;
+  emptyState.hidden = totalCount !== 0;
+
+  webCount.textContent = webResults.length;
+  installCount.textContent = installResults.length;
+
+  webGrid.innerHTML = webResults.map((tool, index) => renderCard(tool, index)).join('');
+  installGrid.innerHTML = installResults.map((tool, index) => renderCard(tool, index + webResults.length)).join('');
 }
+
 search.addEventListener('input', render);
-document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
-  activeFilter = button.dataset.filter;
-  document.querySelectorAll('[data-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-  render();
-}));
 document.querySelector('#reset-search').addEventListener('click', () => {
   search.value = '';
-  document.querySelector('[data-filter="all"]').click();
+  render();
   search.focus();
 });
 document.addEventListener('keydown', event => {

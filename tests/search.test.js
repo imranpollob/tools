@@ -24,3 +24,13 @@ test('catalog has unique repositories, local previews, and safe links', () => {
     assert.ok(existsSync(new URL(`../public/previews/${tool.image}`, import.meta.url)), tool.image);
   }
 });
+test('filterTools respects manual priority ordering', () => {
+  const sample = [
+    { title: 'Alpha', repo: 'a', priority: 3, type: 'online' },
+    { title: 'Beta', repo: 'b', priority: 1, type: 'online' },
+    { title: 'Gamma', repo: 'c', priority: 2, type: 'online' },
+    { title: 'Delta', repo: 'd', type: 'online' }
+  ];
+  const sorted = filterTools(sample, '');
+  assert.deepEqual(sorted.map(t => t.title), ['Beta', 'Gamma', 'Alpha', 'Delta']);
+});
