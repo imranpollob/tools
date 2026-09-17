@@ -18,7 +18,7 @@
     "subtitle": "Create, edit, search, and organize notes with rich text editing, autosave, and a personal online workspace.",
     "category": "Productivity",
     "type": "online",
-    "url": "https://snippet7.vercel.app/",
+    "url": "https://imranpollob.github.io/snippet-notes/",
     "action": "Use online",
     "image": "snippet-notes.jpeg",
     "tags": []
@@ -30,7 +30,7 @@
     "subtitle": "Read PDFs and text aloud with synchronized highlighting, browser speech, and neural text-to-speech support.",
     "category": "Reading",
     "type": "online",
-    "url": "https://document-echo.vercel.app/",
+    "url": "https://imranpollob.github.io/pdf-text-to-speech-reader/",
     "action": "Use online",
     "image": "pdf-text-to-speech-reader.png",
     "tags": []
