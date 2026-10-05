@@ -24,13 +24,20 @@
 
 <body>
   <a class="skip-link" href="#tools">Skip to tools</a>
-  <header class="site-header"><a class="brand" href="./" aria-label="Tools by Imran Pollob home"><img class="brand-logo"
-        src="./logo.png" alt="" width="52" height="52"><span class="brand-name">Tools <span class="brand-light">by Imran
-          Pollob</span></span></a>
+  <header class="site-header"><span class="brand"><a class="brand-home" href="./" aria-label="Tools by Imran Pollob home"><img class="brand-logo"
+        src="./logo.png" alt="" width="52" height="52"></a><button class="launcher-toggle" id="launcher-toggle" type="button" aria-label="Browse all tools" aria-expanded="false" aria-haspopup="dialog" title="Browse all tools"><span data-icon="apps"></span></button><a class="brand-home" href="./"><span class="brand-name">Tools <span class="brand-light">by Imran
+          Pollob</span></span></a></span>
     <div class="header-actions"><a class="author-link" href="https://github.com/imranpollob" target="_blank"
         rel="noopener noreferrer"><span>Made by Imran Pollob</span><span data-icon="github"></span><span
           aria-hidden="true">↗</span></a><button class="theme-toggle" id="theme-toggle" type="button"
         aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span></button></div>
+    <div class="launcher-backdrop" id="launcher-backdrop" hidden></div>
+    <div class="launcher" id="launcher" role="dialog" aria-label="All tools" hidden>
+      <div class="launcher-head">
+        <p class="launcher-title">All tools <span id="launcher-count"></span></p>
+      </div>
+      <div class="launcher-grid" id="launcher-grid"></div>
+    </div>
   </header>
   <main>
     <section class="intro" aria-labelledby="page-title">

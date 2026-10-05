@@ -24,6 +24,43 @@ assert.equal(await page.locator('.tool-card').count(), 0);
 assert.equal(await page.locator('#empty-state').isVisible(), true);
 await page.locator('#reset-search').click();
 assert.equal(await page.locator('.tool-card').count(), expectedCount);
+// Apps launcher: waffle toggle between logo and brand text, grid of tool boxes in homepage order, dismiss.
+assert.equal(await page.locator('.site-header .brand #launcher-toggle').count(), 1);
+const launcher = page.locator('#launcher');
+assert.equal(await launcher.isHidden(), true);
+await page.getByRole('button', { name: 'Browse all tools' }).click();
+assert.equal(await launcher.isVisible(), true);
+assert.equal(await page.locator('#launcher-toggle').getAttribute('aria-expanded'), 'true');
+assert.equal(await launcher.locator('.launcher-box').count(), expectedCount);
+assert.equal(await page.locator('#launcher-count').innerText(), String(expectedCount));
+const byPriority = (a, b) => a.priority - b.priority;
+const homepageOrder = [...tools.filter(t => t.type === 'online').sort(byPriority), ...tools.filter(t => t.type === 'install').sort(byPriority)];
+assert.equal(await launcher.locator('.launcher-box').first().innerText(), homepageOrder[0].title);
+assert.equal(await launcher.locator('.launcher-box').last().innerText(), homepageOrder[homepageOrder.length - 1].title);
+await page.keyboard.press('Escape');
+assert.equal(await launcher.isHidden(), true);
+assert.equal(await page.locator('#launcher-toggle').evaluate(el => el === document.activeElement), true);
+await page.getByRole('button', { name: 'Browse all tools' }).click();
+assert.equal(await launcher.isVisible(), true);
+await page.locator('#launcher-backdrop').click();
+assert.equal(await launcher.isHidden(), true);
+// Hover behavior: opens on toggle hover (no click), closes when mouse leaves the panel.
+await page.locator('#launcher-toggle').hover();
+await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
+assert.equal(await launcher.isVisible(), true);
+assert.equal(await page.locator('#launcher-toggle').getAttribute('aria-expanded'), 'true');
+await launcher.locator('.launcher-box').first().hover();
+assert.equal(await launcher.isVisible(), true);
+await page.mouse.move(720, 1000);
+await page.waitForFunction(() => document.querySelector('#launcher').hidden);
+assert.equal(await launcher.isHidden(), true);
+assert.equal(await page.locator('#launcher-toggle').getAttribute('aria-expanded'), 'false');
+// Hovering the toggle then moving away without entering the panel also closes.
+await page.locator('#launcher-toggle').hover();
+await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
+await page.mouse.move(720, 1000);
+await page.waitForFunction(() => document.querySelector('#launcher').hidden);
+assert.equal(await launcher.isHidden(), true);
 for (const width of [375, 768, 1440, 1920]) {
   await page.setViewportSize({ width, height: 900 });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `Overflow at ${width}`);
