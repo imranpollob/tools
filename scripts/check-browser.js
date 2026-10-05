@@ -61,6 +61,40 @@ await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
 await page.mouse.move(720, 1000);
 await page.waitForFunction(() => document.querySelector('#launcher').hidden);
 assert.equal(await launcher.isHidden(), true);
+// Gap transit: pausing between the toggle and the panel keeps the menu open.
+await page.locator('#launcher-toggle').hover();
+await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
+const gapPoint = await page.locator('#launcher-toggle').evaluate(el => {
+  const rect = el.getBoundingClientRect();
+  return { x: rect.left + rect.width / 2, y: rect.bottom + 12 };
+});
+await page.mouse.move(gapPoint.x, gapPoint.y);
+await page.waitForTimeout(400);
+assert.equal(await launcher.isVisible(), true);
+await launcher.locator('.launcher-box').first().hover();
+assert.equal(await launcher.isVisible(), true);
+await page.mouse.move(720, 1000);
+await page.waitForFunction(() => document.querySelector('#launcher').hidden);
+// Launcher polish: all tiles fit without scrolling on desktop, count uses the
+// shared pill style, and opening plays a subtle rise animation.
+await page.locator('#launcher-toggle').hover();
+await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
+assert.equal(await page.locator('#launcher-grid').evaluate(el => el.scrollHeight <= el.clientHeight + 1), true);
+assert.equal(await page.locator('#launcher').evaluate(el => el.classList.contains('has-more')), false);
+assert.equal(await page.locator('#launcher-count').evaluate(el => el.classList.contains('category-count')), true);
+assert.equal(await page.locator('#launcher').evaluate(el => getComputedStyle(el).animationName), 'launcher-in');
+await page.mouse.move(720, 1000);
+await page.waitForFunction(() => document.querySelector('#launcher').hidden);
+// Short viewport: the grid scrolls and a fade cue shows until scrolled to bottom.
+await page.setViewportSize({ width: 1440, height: 500 });
+await page.locator('#launcher-toggle').hover();
+await page.waitForFunction(() => !document.querySelector('#launcher').hidden);
+assert.equal(await page.locator('#launcher').evaluate(el => el.classList.contains('has-more')), true);
+await page.locator('#launcher-grid').evaluate(el => { el.scrollTop = el.scrollHeight; });
+await page.waitForFunction(() => !document.querySelector('#launcher').classList.contains('has-more'));
+await page.mouse.move(720, 450);
+await page.waitForFunction(() => document.querySelector('#launcher').hidden);
+await page.setViewportSize({ width: 1440, height: 1100 });
 for (const width of [375, 768, 1440, 1920]) {
   await page.setViewportSize({ width, height: 900 });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `Overflow at ${width}`);

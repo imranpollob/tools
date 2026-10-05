@@ -20,6 +20,11 @@ export function initLauncher(doc, tools) {
 
   const isOpen = () => !panel.hidden;
 
+  const updateFade = () => {
+    const more = grid.scrollHeight - grid.scrollTop - grid.clientHeight > 8;
+    panel.classList.toggle('has-more', more && isOpen());
+  };
+
   // Hover intent: a short delay bridges the gap between toggle and panel
   // so moving the pointer across doesn't flicker the menu closed.
   let closeTimer = null;
@@ -37,6 +42,7 @@ export function initLauncher(doc, tools) {
     panel.hidden = false;
     backdrop.hidden = false;
     toggle.setAttribute('aria-expanded', 'true');
+    updateFade();
   };
 
   const close = (refocus = false) => {
@@ -45,6 +51,7 @@ export function initLauncher(doc, tools) {
     panel.hidden = true;
     backdrop.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
+    updateFade();
     if (refocus) toggle.focus();
   };
 
@@ -61,6 +68,8 @@ export function initLauncher(doc, tools) {
   toggle.addEventListener('mouseleave', scheduleClose);
   panel.addEventListener('mouseenter', cancelClose);
   panel.addEventListener('mouseleave', scheduleClose);
+  grid.addEventListener('scroll', updateFade, { passive: true });
+  doc.defaultView?.addEventListener('resize', updateFade);
   backdrop.addEventListener('click', () => close());
   doc.addEventListener('keydown', event => {
     if (event.key === 'Escape' && isOpen()) close(true);
