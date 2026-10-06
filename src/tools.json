@@ -9,7 +9,9 @@
     "url": "https://banglaquran.app",
     "action": "Use online",
     "image": "bangla-quran.png",
-    "tags": []
+    "tags": [],
+    "hue": 160,
+    "glyph": "📖"
   },
   {
     "priority": 2,
@@ -24,9 +26,11 @@
     "tags": [
       "diff",
       "compare"
-    ]
+    ],
+    "hue": 10,
+    "glyph": "🔀"
   },
-    {
+  {
     "priority": 3,
     "repo": "markdown-previewer",
     "title": "Markdown Previewer",
@@ -36,7 +40,12 @@
     "url": "https://imranpollob.github.io/markdown-previewer/",
     "action": "Use online",
     "image": "markdown-previewer.png",
-    "tags": ["markdown", "preview"]
+    "tags": [
+      "markdown",
+      "preview"
+    ],
+    "hue": 265,
+    "glyph": "📝"
   },
   {
     "priority": 4,
@@ -48,9 +57,10 @@
     "url": "https://imranpollob.github.io/snippet-notes/",
     "action": "Use online",
     "image": "snippet-notes.jpeg",
-    "tags": []
+    "tags": [],
+    "hue": 45,
+    "glyph": "✂️"
   },
-
   {
     "priority": 5,
     "repo": "crypto-chart-viewer",
@@ -61,7 +71,9 @@
     "url": "https://imranpollob.github.io/crypto-chart-viewer",
     "action": "Use online",
     "image": "crypto-chart-viewer.png",
-    "tags": []
+    "tags": [],
+    "hue": 140,
+    "glyph": "📈"
   },
   {
     "priority": 6,
@@ -73,7 +85,9 @@
     "url": "https://imranpollob.github.io/pdf-text-to-speech-reader/",
     "action": "Use online",
     "image": "pdf-text-to-speech-reader.png",
-    "tags": []
+    "tags": [],
+    "hue": 0,
+    "glyph": "🔊"
   },
   {
     "priority": 7,
@@ -85,7 +99,9 @@
     "url": "https://imranpollob.github.io/word-character-counter/",
     "action": "Use online",
     "image": "word-character-counter.png",
-    "tags": []
+    "tags": [],
+    "hue": 215,
+    "glyph": "🔢"
   },
   {
     "priority": 8,
@@ -97,7 +113,9 @@
     "url": "https://imranpollob.github.io/mental-math-trainer/",
     "action": "Use online",
     "image": "mental-math-trainer.jpeg",
-    "tags": []
+    "tags": [],
+    "hue": 30,
+    "glyph": "🧮"
   },
   {
     "priority": 9,
@@ -109,7 +127,9 @@
     "url": "https://imranpollob.github.io/bibtex-to-bibitem/",
     "action": "Use online",
     "image": "bibtex-to-bibitem.png",
-    "tags": []
+    "tags": [],
+    "hue": 285,
+    "glyph": "📚"
   },
   {
     "priority": 10,
@@ -121,7 +141,9 @@
     "url": "https://imranpollob.github.io/black-screen-online/",
     "action": "Use online",
     "image": "black-screen-online.png",
-    "tags": []
+    "tags": [],
+    "hue": 230,
+    "glyph": "⬛"
   },
   {
     "priority": 11,
@@ -133,7 +155,9 @@
     "url": "https://imranpollob.github.io/online-spelling-quiz/",
     "action": "Use online",
     "image": "online-spelling-quiz.png",
-    "tags": []
+    "tags": [],
+    "hue": 330,
+    "glyph": "🔤"
   },
   {
     "priority": 12,
@@ -145,7 +169,9 @@
     "url": "https://imranpollob.github.io/github-profile-analyzer/",
     "action": "Use online",
     "image": "github-profile-analyzer.png",
-    "tags": []
+    "tags": [],
+    "hue": 250,
+    "glyph": "🐙"
   },
   {
     "priority": 12,
@@ -157,7 +183,9 @@
     "url": "https://imranpollob.github.io/online-trivia-quiz/",
     "action": "Use online",
     "image": "online-trivia-quiz.png",
-    "tags": []
+    "tags": [],
+    "hue": 55,
+    "glyph": "❓"
   },
   {
     "priority": 14,
@@ -169,7 +197,9 @@
     "url": "https://imranpollob.github.io/color-shade-generator/",
     "action": "Use online",
     "image": "color-shade-generator.jpeg",
-    "tags": []
+    "tags": [],
+    "hue": 320,
+    "glyph": "🎨"
   },
   {
     "priority": 15,
@@ -181,7 +211,9 @@
     "url": "https://imranpollob.github.io/lorem-ipsum-generator/",
     "action": "Use online",
     "image": "lorem-ipsum-generator.png",
-    "tags": []
+    "tags": [],
+    "hue": 190,
+    "glyph": "¶"
   },
   {
     "priority": 1,
@@ -193,7 +225,9 @@
     "url": "https://github.com/imranpollob/pomodoro-timer/releases",
     "action": "Download app",
     "image": "pomodoro-timer.png",
-    "tags": []
+    "tags": [],
+    "hue": 15,
+    "glyph": "🍅"
   },
   {
     "priority": 2,
@@ -205,7 +239,9 @@
     "url": "https://www.npmjs.com/package/node-note-cli",
     "action": "Install locally",
     "image": "note-cli.png",
-    "tags": []
+    "tags": [],
+    "hue": 170,
+    "glyph": "🗒️"
   },
   {
     "priority": 3,
@@ -217,7 +253,9 @@
     "url": "https://pypi.org/project/gitstar/",
     "action": "Install locally",
     "image": "github-star-calculator.png",
-    "tags": []
+    "tags": [],
+    "hue": 48,
+    "glyph": "⭐"
   },
   {
     "priority": 4,
@@ -229,6 +267,8 @@
     "url": "https://www.npmjs.com/package/slugcopy",
     "action": "Install locally",
     "image": "slugcopy.png",
-    "tags": []
+    "tags": [],
+    "hue": 205,
+    "glyph": "🔗"
   }
 ]
