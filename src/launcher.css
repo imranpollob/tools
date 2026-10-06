@@ -56,7 +56,7 @@
 .launcher {
   position: absolute;
   top: calc(100% + 4px);
-  left: 64px;
+  right: 64px;
   z-index: 50;
   width: min(560px, calc(100vw - 40px));
   max-height: min(80vh, 640px);
@@ -234,7 +234,7 @@
 
 @media (max-width: 1100px) {
   .launcher {
-    left: 32px;
+    right: 32px;
   }
 }
 

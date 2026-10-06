@@ -25,7 +25,7 @@ assert.equal(await page.locator('#empty-state').isVisible(), true);
 await page.locator('#reset-search').click();
 assert.equal(await page.locator('.tool-card').count(), expectedCount);
 // Apps launcher: waffle toggle between logo and brand text, grid of tool boxes in homepage order, dismiss.
-assert.equal(await page.locator('.site-header .brand #launcher-toggle').count(), 1);
+assert.equal(await page.locator('.site-header .header-actions #launcher-toggle').count(), 1);
 const launcher = page.locator('#launcher');
 assert.equal(await launcher.isHidden(), true);
 await page.getByRole('button', { name: 'Browse all tools' }).click();
