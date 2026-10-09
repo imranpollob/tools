@@ -1,6 +1,7 @@
 import './style.css';
 import tools from './tools.json';
 import { filterTools } from './search.js';
+import { categories } from './categories.js';
 
 const paths = {
   moon: '<path d="M20.7 13.1A9 9 0 0 1 10.9 3.3a9 9 0 1 0 9.8 9.8Z"/>',
@@ -35,12 +36,7 @@ systemTheme.addEventListener('change', event => {
   if (!['light', 'dark'].includes(themePreference)) applyTheme(event.matches ? 'dark' : 'light');
 });
 const search = document.querySelector('#search');
-const webGrid = document.querySelector('#web-grid');
-const installGrid = document.querySelector('#install-grid');
-const categoryWeb = document.querySelector('#category-web');
-const categoryInstall = document.querySelector('#category-install');
-const webCount = document.querySelector('#web-count');
-const installCount = document.querySelector('#install-count');
+const categoryList = document.querySelector('#category-list');
 const emptyState = document.querySelector('#empty-state');
 
 const escape = text => text.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -60,21 +56,23 @@ const renderCard = (tool, index) => `<article class="tool-card">
   </div>
 </article>`;
 
+const slug = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 function render() {
-  const query = search.value;
-  const webResults = filterTools(tools, query, 'online');
-  const installResults = filterTools(tools, query, 'install');
-  const totalCount = webResults.length + installResults.length;
-
-  categoryWeb.hidden = webResults.length === 0;
-  categoryInstall.hidden = installResults.length === 0;
-  emptyState.hidden = totalCount !== 0;
-
-  webCount.textContent = webResults.length;
-  installCount.textContent = installResults.length;
-
-  webGrid.innerHTML = webResults.map((tool, index) => renderCard(tool, index)).join('');
-  installGrid.innerHTML = installResults.map((tool, index) => renderCard(tool, index + webResults.length)).join('');
+  const results = filterTools(tools, search.value);
+  let index = 0;
+  categoryList.innerHTML = categories.map(category => {
+    const items = results.filter(tool => tool.category === category);
+    if (!items.length) return '';
+    const id = `category-${slug(category)}`;
+    return `<section class="tool-category" id="${id}" aria-labelledby="heading-${id}">
+      <div class="category-header">
+        <h2 id="heading-${id}" class="category-title">${escape(category)} <span class="category-count">${items.length}</span></h2>
+      </div>
+      <div class="tool-grid">${items.map(tool => renderCard(tool, index++)).join('')}</div>
+    </section>`;
+  }).join('');
+  emptyState.hidden = results.length !== 0;
 }
 
 search.addEventListener('input', render);

@@ -11,7 +11,7 @@ npm run dev
 
 ## Update projects
 
-Edit `src/tools.json` to add or update a project. Set its `priority` to control where it appears in its section. Preview images go in `public/previews/`.
+Edit `src/tools.json` to add or update a project. Set its `category` to one of the names in `src/categories.js` (sections render in that order) and its `priority` to control where it appears within the section. Preview images go in `public/previews/`.
 
 ## Build and deploy
 
